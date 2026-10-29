@@ -1,0 +1,1 @@
+Coloque aqui sua logo como logo.png e adicione os ícones PWA icon-192.png e icon-512.png.

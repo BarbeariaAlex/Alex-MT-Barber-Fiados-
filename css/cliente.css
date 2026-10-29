@@ -1,0 +1,248 @@
+:root {
+  color-scheme: dark;
+  --bg: #090909;
+  --surface: #151515;
+  --yellow: #f5c518;
+  --text: #f5f5f5;
+  --muted: #a7a7a7;
+  --border: #303030;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 22px 14px;
+  background:
+    radial-gradient(circle at top, #28210c 0, transparent 300px),
+    var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.customer-page {
+  width: min(560px, 100%);
+  margin: 0 auto;
+}
+
+.customer-header {
+  padding: 16px 12px 25px;
+  text-align: center;
+}
+
+.customer-header img {
+  display: block;
+  width: 125px;
+  height: 125px;
+  object-fit: contain;
+  margin: 0 auto 16px;
+}
+
+.eyebrow {
+  color: var(--yellow);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+h1 {
+  margin: 8px 0;
+  font-size: clamp(27px, 7vw, 36px);
+}
+
+h2 {
+  margin: 0 0 12px;
+  font-size: 18px;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.customer-header .muted {
+  line-height: 1.5;
+}
+
+.welcome-card,
+.balance-card,
+.message-card,
+.debt-card {
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: var(--surface);
+}
+
+.welcome-card {
+  padding: 20px;
+  margin-bottom: 12px;
+}
+
+.welcome-card h2 {
+  margin: 7px 0;
+  font-size: 23px;
+  overflow-wrap: anywhere;
+}
+
+.welcome-card p:last-child {
+  margin-bottom: 0;
+}
+
+.balance-card {
+  display: grid;
+  gap: 10px;
+  padding: 23px 20px;
+  margin-bottom: 28px;
+  border-color: #51451b;
+  background: linear-gradient(135deg, #211d0d, #151515);
+}
+
+.balance-card > span {
+  color: #ddd;
+  font-size: 13px;
+}
+
+.balance-card > strong {
+  color: var(--yellow);
+  font-size: clamp(30px, 8vw, 38px);
+  overflow-wrap: anywhere;
+}
+
+.balance-card small {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.customer-section {
+  margin-bottom: 28px;
+}
+
+.customer-section h2 {
+  margin-bottom: 14px;
+}
+
+.debt-list {
+  display: grid;
+  gap: 10px;
+}
+
+.debt-card {
+  padding: 15px;
+}
+
+.debt-top,
+.debt-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.debt-top {
+  margin-bottom: 14px;
+}
+
+.debt-top strong:first-child {
+  overflow-wrap: anywhere;
+}
+
+.debt-top strong:last-child {
+  color: var(--yellow);
+  white-space: nowrap;
+}
+
+.debt-bottom {
+  padding-top: 11px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.status {
+  padding: 5px 8px;
+  border-radius: 20px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.status.open {
+  background: #392c0b;
+  color: var(--yellow);
+}
+
+.status.paid {
+  background: #12351e;
+  color: #8fe6a5;
+}
+
+.empty {
+  padding: 16px;
+  border: 1px dashed #383838;
+  border-radius: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.message-card {
+  padding: 22px;
+  margin: 15px 0;
+  color: var(--muted);
+  line-height: 1.6;
+  text-align: center;
+}
+
+.error-card {
+  border-color: #633535;
+  color: #ffaaaa;
+}
+
+.customer-footer {
+  padding: 28px 12px 15px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.customer-footer p {
+  margin-bottom: 7px;
+  color: var(--yellow);
+  font-weight: 800;
+}
+
+.customer-footer small {
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+@media (max-width: 380px) {
+  body {
+    padding: 12px 9px;
+  }
+
+  .customer-header img {
+    width: 105px;
+    height: 105px;
+  }
+
+  .welcome-card,
+  .balance-card {
+    padding: 16px;
+  }
+
+  .debt-card {
+    padding: 12px;
+  }
+
+  .debt-top {
+    align-items: flex-start;
+  }
+}

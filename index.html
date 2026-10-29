@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090909">
+  <meta name="description" content="Controle de fiados Alex MT Barber.">
+  <title>Controle de Fiados | Alex MT Barber</title>
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <link rel="apple-touch-icon" href="img/logo.png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <section id="loginGate" class="login-gate">
+    <form id="loginForm" class="login-card">
+      <img src="img/logo.png" alt="Logo Alex MT Barber" class="login-logo">
+      <p class="eyebrow">ÁREA RESTRITA</p>
+      <h1>Controle de fiados</h1>
+      <p class="muted">Entre com a conta do administrador.</p>
+
+      <label>
+        E-mail
+        <input id="loginEmail" type="email" autocomplete="username"
+          placeholder="Seu e-mail" required>
+      </label>
+
+      <label>
+        Senha
+        <input id="loginPassword" type="password"
+          autocomplete="current-password" placeholder="Sua senha" required>
+      </label>
+
+      <p id="loginError" class="error" role="alert"></p>
+      <button class="button primary" id="loginSubmit" type="submit">
+        Entrar
+      </button>
+    </form>
+  </section>
+
+  <div id="appShell" class="app-shell" hidden>
+    <header class="topbar">
+      <a href="index.html" class="brand">
+        <img src="img/logo.png" alt="Logo Alex MT Barber">
+        <span>
+          <strong>Alex MT Barber</strong>
+          <small>Controle de fiados</small>
+        </span>
+      </a>
+      <div class="top-actions">
+        <button id="installButton" class="button secondary" hidden>
+          Instalar
+        </button>
+        <button id="logoutButton" class="button secondary">
+          Sair
+        </button>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="page-heading">
+        <div>
+          <p class="eyebrow">PAINEL ADMINISTRATIVO</p>
+          <h1>Visão geral</h1>
+        </div>
+        <span id="connectionStatus" class="connection">
+          Verificando conexão...
+        </span>
+      </div>
+
+      <section class="stats">
+        <article class="stat-card">
+          <span>Total em aberto</span>
+          <strong id="openDebtTotal">R$ 0,00</strong>
+        </article>
+        <article class="stat-card">
+          <span>Clientes com fiado</span>
+          <strong id="openClientCount">0</strong>
+        </article>
+        <article class="stat-card">
+          <span>Pendências abertas</span>
+          <strong id="openDebtCount">0</strong>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading">
+          <div>
+            <h2>Clientes e pendências</h2>
+            <p class="muted">Cadastre contas e acompanhe os pagamentos.</p>
+          </div>
+          <button id="newDebtButton" class="button primary">
+            + Novo fiado
+          </button>
+        </div>
+
+        <input id="searchInput" class="search" type="search"
+          placeholder="Buscar por nome ou telefone...">
+
+        <p id="clientListCount" class="muted"></p>
+        <div id="clientList" class="client-list"></div>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading">
+          <div>
+            <h2>Histórico de pagamentos</h2>
+            <p class="muted">Últimas pendências quitadas.</p>
+          </div>
+        </div>
+        <div id="paidHistory" class="history-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="debtDialog" class="dialog">
+    <form id="debtForm" class="dialog-content">
+      <div class="section-heading">
+        <h2>Novo fiado</h2>
+        <button type="button" id="closeDebtDialog"
+          class="close-button" aria-label="Fechar">×</button>
+      </div>
+
+      <label>Nome do cliente
+        <input id="customerName" required maxlength="100"
+          placeholder="Nome completo">
+      </label>
+
+      <label>Telefone / WhatsApp
+        <input id="customerPhone" type="tel" maxlength="30"
+          placeholder="DDD + número">
+      </label>
+
+      <label>Tipo
+        <select id="debtType" required>
+          <option value="corte">Corte</option>
+          <option value="produto">Produto</option>
+        </select>
+      </label>
+
+      <label>Valor (R$)
+        <input id="debtAmount" type="number" min="0.01"
+          step="0.01" required placeholder="0,00">
+      </label>
+
+      <label>Descrição (opcional)
+        <input id="debtDescription" maxlength="200"
+          placeholder="Ex.: corte + barba">
+      </label>
+
+      <p id="debtError" class="error" role="alert"></p>
+      <button id="saveDebtButton" class="button primary" type="submit">
+        Salvar fiado
+      </button>
+    </form>
+  </dialog>
+
+  <dialog id="detailDialog" class="dialog">
+    <div id="detailContent" class="dialog-content"></div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
